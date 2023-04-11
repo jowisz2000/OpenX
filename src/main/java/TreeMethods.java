@@ -31,32 +31,33 @@ public class TreeMethods {
             rightBranch.add(current);
             return rightBranch;
         }
-
     }
 
-    public static void main(String[] args){
-        Node n1 = new Node(1);
-        Node n2 = new Node(2);
-        Node n3 = new Node(3);
-        Node n4 = new Node(4);
-        Node n5 = new Node(5);
-        Node n6 = new Node(6);
-        Node n7 = new Node(7);
-        n1.setLeft(n2);
-        n2.setRight(n3);
-        n2.setLeft(n4);
-        n3.setRight(n5);
-        n3.setLeft(n6);
-        n4.setRight(n7);
-
-        numberOfLeaves(n1);
-        System.out.println("Number fo nodes wothout child: "+sumOfNodesWithoutChild+"\n-------------");
-        ArrayList<Node> branch = findLongestBranch(n1);
-        for(Node i:branch){
-            System.out.println(i.getValue());
+    static public boolean compareNodes(Node first, Node second){
+        if(first == null && second == null){
+            return true;
         }
 
-        int length = branch.size()-1;
-        System.out.println("Length of the longest branch: " + length);
+        if(first == null || second == null){
+            return false;
+        }
+
+        try {
+            if (first.getValue() != second.getValue()) {
+                return false;
+            }
+
+            if (first.getRight().getValue() != second.getRight().getValue()) {
+                return false;
+            }
+
+            if (first.getLeft().getValue() != second.getLeft().getValue()) {
+                return false;
+            }
+        }
+        catch(NullPointerException ignored){
+        }
+
+        return compareNodes(first.getLeft(), second.getLeft()) && compareNodes(first.getRight(), second.getRight());
     }
 }

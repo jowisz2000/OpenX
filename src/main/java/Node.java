@@ -1,16 +1,12 @@
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
+@RequiredArgsConstructor
 @Getter
 @Setter
 public class Node {
     private Node left;
     private Node right;
-    private int value;
-
-    Node(int value){
-        this.value=value;
-    }
+    private final int value;
 }
